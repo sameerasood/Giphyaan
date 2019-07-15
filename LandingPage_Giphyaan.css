@@ -1,0 +1,14 @@
+#topSpace{
+  margin-top:15px;
+  margin-left:30px;
+}
+#aboveSearch{
+  margin-top:20px;
+}
+#aboveCards{
+  margin-top:50px;
+  margin-left:30px;
+}
+.card-deck .card {
+    max-width: calc(25% - 30px);
+}
