@@ -6,41 +6,45 @@ var options = {
     host: 'api.giphy.com',
     path: '/v1/gifs/trending?api_key=AvWn97WFSR6l637f7hvvUQSe7ekOrXTj&limit=3e&rating=G',
     method: 'GET'
-  };
+};
 
 let responseData = [];
 
-  http.get(options, (resp) => {
+// http call to giphy endoint 
+http.get(options, (resp) => {
     console.log('STATUS: ' + resp.statusCode);
     console.log('statusMessage: ' + resp.statusMessage);
     // A chunk of data has been received.
     resp.on('data', (chunk) => {
-      responseData += chunk;
+        responseData += chunk;
     });
-  
+
     // The whole response has been received. Get the result.
     resp.on('end', () => {
         setData(responseData);
     });
-  
-  }).on("error", (err) => {
+
+}).on("error", (err) => {
     console.log("Error: " + err.message);
-  });
+});
 
-function setData(responseData){
+function setData(responseData) {
+    // parse raw data into js object
+    var object = JSON.parse(responseData);
 
-var object = JSON.parse(responseData);   
-
-var arr = [ ];
-for (let i=0; i<object.data.length; i++){
-   arr.push(new GiphyDomain(object.data[i].url,object.data[i].title));
+    var arr = [];
+    for (let i = 0; i < object.data.length; i++) {
+        arr.push(new GiphyDomain(object.data[i].url, object.data[i].title));
+    }
 }
-}
 
+/**
+ * Domain Object
+ */
 class GiphyDomain {
     constructor(url, title) {
-   this.url = url; // class varaibles
-   this.title = title; // class variables
-}
+        this.url = url; // class varaibles
+        this.title = title; // class variables
+    }
 }
 
