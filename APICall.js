@@ -1,5 +1,5 @@
 
-var http = require('http');
+var http = require('http'); //importing node module http
 
 // Giphy trending endpoint
 var options = {
@@ -31,12 +31,15 @@ http.get(options, (resp) => {
 
 function setData(responseDto) {
     // parse raw data into js object aka DTO object to Domain object
-    var object = JSON.parse(responseData);
+    var object = JSON.parse(responseDto);
     var giphyDomainArr = [];
 
-    for (let i = 0; i < object.data.length; i++) {
-        giphyDomainArr.push(new GiphyDomain(object.data[i].url, object.data[i].title));
-    }
+    //for (let i = 0; i < object.data.length; i++) {
+    //    giphyDomainArr.push(new GiphyDomain(object.data[i].url, object.data[i].title));
+    //}
+    object.data.forEach(element => {
+        giphyDomainArr.push(new GiphyDomain(element.url, element.title))
+    });
 }
 
 /**
