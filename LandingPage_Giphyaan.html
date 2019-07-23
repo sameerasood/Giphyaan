@@ -37,12 +37,20 @@
             alert('Error');
           },
           success: function (response) {
+            if (response.data === undefined || response.data.length == 0) {
+              $(".card-img-top").each(function (index) {
+                $(this).fadeOut();
+              });
 
-            $(".card-img-top").each(function (index) {
-              console.log(response.data[index].images.fixed_height_still.url);
-
-              $(this).attr("src", response.data[index].images.fixed_height_still.url);
-            })
+              $(".card-body").show();
+            }
+            else {
+              $(".card-body").hide();
+              $(".card-img-top").each(function (index) {
+                $(this).show();
+                $(this).attr("src", response.data[index].images.downsized_medium.url);
+              })
+            }
           }
         });
       });
@@ -65,17 +73,13 @@
           alert('Error');
         },
         success: function (response) {
-
+          $(".card-body").hide();
           $(".card-img-top").each(function (index) {
-            console.log(response.data[index].images.fixed_height_still.url);
-
-            $(this).attr("src", response.data[index].images.fixed_height_still.url);
+            console.log(response.data[index].images.downsized_medium.url);
+            $(this).attr("src", response.data[index].images.downsized_medium.url);
           })
         }
       });
-
-
-
     });
 
   </script>
@@ -93,7 +97,8 @@
     </span>
   </div>
   <div id="aboveSearch">
-    <nav class="navbar navbar-light justify-content-center" style="background-color: #e3f2fd;">
+    <nav class="navbar navbar-light justify-content-center shadow-lg p-3 mb-5 bg-#e3f2f rounded"
+      style="background-color: #e3f2fd;">
       <div class="col-lg-6">
         <input id="search-input" class="form-control mr-sm-2 " type="search" placeholder="Search..."
           aria-label="Search">
@@ -101,20 +106,22 @@
       <button id="search-button" class="btn btn-primary my-2 my-sm-0" type="submit">Search</button>
     </nav>
   </div>
+
+
   <div id="aboveCards">
     <div class="row">
       <div class="col-sm-4">
-        <div class="card" style="width: 18rem;">
+        <div class="card shadow-lg p-3 mb-5 bg-white rounded" style="width: 18rem;">
           <img src="https://media.giphy.com/media/9Pk3Y2QCF1fR7TyXqZ/giphy.gif" class="card-img-top" alt="...">
         </div>
       </div>
       <div class="col-sm-4">
-        <div class="card" style="width: 18rem;">
+        <div class="card shadow-lg p-3 mb-5 bg-white rounded" style="width: 18rem;">
           <img src="https://media.giphy.com/media/9Pk3Y2QCF1fR7TyXqZ/giphy.gif" class="card-img-top" alt="...">
         </div>
       </div>
       <div class="col-sm-4">
-        <div class="card" style="width: 18rem;">
+        <div class="card shadow-lg p-3 mb-5 bg-white rounded" style="width: 18rem;">
           <img src="https://media.giphy.com/media/9Pk3Y2QCF1fR7TyXqZ/giphy.gif" class="card-img-top" alt="...">
         </div>
       </div>
@@ -123,31 +130,39 @@
     <div id="aboveCards">
       <div class="row">
         <div class="col-sm-4">
-          <div class="card" style="width: 18rem;">
+          <div class="card shadow-lg p-3 mb-5 bg-white rounded" style="width: 18rem;">
             <img src="https://media.giphy.com/media/9Pk3Y2QCF1fR7TyXqZ/giphy.gif" class="card-img-top" alt="...">
           </div>
         </div>
         <div class="col-sm-4">
-          <div class="card" style="width: 18rem;">
+          <div class="card shadow-lg p-3 mb-5 bg-white rounded" style="width: 18rem;">
             <img src="https://media.giphy.com/media/9Pk3Y2QCF1fR7TyXqZ/giphy.gif" class="card-img-top" alt="...">
           </div>
         </div>
         <div class="col-sm-4">
-          <div class="card" style="width: 18rem;">
+          <div class="card shadow-lg p-3 mb-5 bg-white rounded" style="width: 18rem;">
             <img src="https://media.giphy.com/media/9Pk3Y2QCF1fR7TyXqZ/giphy.gif" class="card-img-top" alt="...">
           </div>
         </div>
       </div>
 
 
-      <!-- Optional JavaScript -->
-      <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
-        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
-        crossorigin="anonymous"></script>
-      <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-        crossorigin="anonymous"></script>
+
+
+      <div class="card-body shadow-lg p-3 mb-5 bg-white rounded" style="width: 25rem;">
+        <img src="https://media.giphy.com/media/gnE4FFhtFoLKM/giphy.gif" alt="...">
+      </div>
+    </div>
+
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+      integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+      crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+      integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+      crossorigin="anonymous"></script>
 </body>
 
 </html>
